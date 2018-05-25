@@ -1,0 +1,210 @@
+@import url(https://samsunginter.net/fonts/SamsungOne/fonts.css);
+
+:root {
+  --brand-color-dark: #05668D;
+  --brand-color-light: #0CA5B0;
+  --pale-background: #eee;
+  --light-text: #fff;
+  --dark-text: #333;
+  --padding: 0.5rem;
+  --pale-background-saturated: #d6f4f7;
+  
+  --brand-gradient: linear-gradient(to bottom right, var(--brand-color-light), var(--brand-color-dark));
+  
+  --layout-big: "head head" min-content
+                 "search body" min-content
+                 "side body" 1fr
+                 "foot foot" min-content
+                  /300px 1fr;
+  
+  --layout-small: "head head" min-content
+                 "search side" min-content
+                 "body body" minmax(min-content, 1fr)
+                 "foot foot" min-content
+                  /1fr 1fr;
+  
+  --layout-very-small: "head head" min-content
+                 "search search" min-content
+                 "side side" min-content
+                 "body body" minmax(min-content, 1fr)
+                 "foot foot" min-content
+                  /1fr 1fr;
+}
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, 'Open Sans', sans;
+  display: grid;
+  grid-template: var(--layout-very-small);
+  margin: 0;
+  color: var(--dark-text);
+  font-display: fallback;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Samsung One', system-ui, 'Open Sans', sans;
+}
+
+body > * {
+      width: 100%;
+}
+
+body > header {
+  background: url(logo.svg) no-repeat right var(--padding) center / contain, var(--brand-gradient);
+  border-bottom: 3px solid var(--brand-color-dark);
+  color: var(--light-text);
+  grid-area: head; 
+  display: flex;
+}
+
+header > h1 {
+  margin-left: var(--padding);
+  margin-right: 3em;
+  font-weight: 200;
+}
+
+header > .logo {
+   flex-shrink: 1; 
+}
+
+body > section.search{
+  grid-area: search; 
+  padding-left: var(--padding);
+  border-right: 1px solid var(--pale-background);
+}
+
+
+body > section.sidebar {
+  grid-area: side; 
+  padding-left: var(--padding);
+  border-right: 1px solid var(--pale-background);
+  padding-right: var(--padding);
+}
+
+
+body > section.sidebar details > summary {
+  font-weight: bold;
+  
+}
+details > summary {
+  cursor: pointer;
+}
+
+body > section.sidebar label {
+  padding-top: 0.5em;
+  display: inline-block;
+}
+
+body > section.sidebar ul {
+  padding: 0;
+}
+
+body > section.sidebar ul > li {
+  list-style: none;
+  padding: 0 0 var(--padding) 0;
+}
+
+
+body > main {
+  grid-area: body; 
+  padding-left: var(--padding);
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-right: var(--padding);
+}
+
+section.meta > img {
+  float: left;
+  margin: 0 1em 1em 0;
+  width: 200px;
+  height: 200px;
+  background: var(--pale-background);
+  object-fit: cover;
+}
+
+body > footer {
+  grid-area: foot; 
+  padding: 1em;
+  background: var(--pale-background);
+}
+
+.inline-group {
+  display: flex; 
+  max-width: 100%;
+}
+.inline-group > input[type="text"] {
+  flex-shrink: 1;
+  min-width: 6em;
+}
+input[type="submit"], button {
+  background: var(--brand-gradient);
+  border-radius: 10%;
+  border: none;
+  color: var(--light-text);
+  font-weight: bold;
+  padding: 0.5em;
+}
+
+.dummy {
+  color: var(--pale-background);
+  pointer-events: none;
+}
+
+.dummy p {
+  font-size: 0.8em;
+  line-height: 1.25em;
+}
+
+.dummy section.meta > img {
+  background: var(--brand-gradient);
+  border-radius: 20%;
+  padding: 1em;
+}
+
+@media only screen and (min-width: 500px) {
+  body {
+    grid-template: var(--layout-small);
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  :root {
+    --padding: 1rem; 
+  }
+  body {
+    grid-template: var(--layout-big);
+  }
+}
+
+details.feed-item {
+  margin-bottom: 1em;
+  border-bottom: 1px solid var(--pale-background);
+  background-color: var(--pale-background);
+  padding: var(--padding);
+  padding-bottom: 0;
+}
+
+details.feed-item[open] {
+  background-color: var(--pale-background-saturated);
+}
+
+details.feed-item > summary > h2 {
+  display: inline-block;
+  margin: 0 0 var(--padding) 0;
+}
+
+details.feed-item > summary {
+  margin-bottom: var(--padding); 
+}
+
+:-moz-focusring{
+  outline: 2px dotted var(--brand-color-light); 
+}
+
+:focus-ring {
+  outline: 2px dotted var(--brand-color-light); 
+}
