@@ -1,0 +1,18 @@
+meta-details .title-area {
+  display: flex;
+}
+
+meta-details .title-area h2 {
+  flex-shrink: 1;
+}
+
+meta-details img {
+  float: left;  
+  margin-right: var(--padding);
+}
+
+meta-details:after {
+  content: '';
+  clear: both;
+  display: block;
+}

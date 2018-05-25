@@ -1,0 +1,16 @@
+{
+    "dir": "ltr",
+    "lang": "pl",
+    "name": "Podle for Podcasts",
+    "scope": "/",
+    "display": "minimal-ui",
+    "start_url": "https://podle.glitch.me/",
+    "short_name": "Podle",
+    "theme_color": "#0CA5B0",
+    "description": "Podle for Podcasts allows you to find and listen to podcasts from your browser.",
+    "orientation": "any",
+    "background_color": "pick",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": []
+}

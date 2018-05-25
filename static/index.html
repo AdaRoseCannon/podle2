@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Podle for Podcasts</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0CA5B0">
+    
+    <link rel="preload" href="https://samsunginter.net/fonts/SamsungOne/fonts.css" as="style">
+    <link rel="preload" href="https://samsunginter.net/fonts/SamsungOne/SamsungOne-300.woff" as="font">
+    <link rel="preload" href="https://samsunginter.net/fonts/SamsungOne/SamsungOne-700.woff" as="font">
+    <link rel="preload" href="https://podle.glitch.me/module/%40webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce.js" as="script">
+    <link rel="preload" href="https://podle.glitch.me/lib/hypermorphic/index.js" as="script">
+    <link rel="preload" href="https://podle.glitch.me/main.js" as="script">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header>
+      <h1>
+        Podle for Podcasts
+      </h1>
+    </header>
+    <section class="search">
+				<form id="search" action="search">
+					<label for="term">
+            <h2>
+              Add new Podcasts  
+            </h2>
+          </label>
+					<span class="inline-group">
+						<input name="term" id="term" autocomplete="on" placeholder="night vale" value="" type="text">
+						<input aria-label="search" value="&#x1F50D;&#xFE0E;" type="submit">
+					</span>
+				</form>
+				<!--<form action="feed">
+					<label for="url">Paste RSS Feed URL: </label>
+					<span class="inline-group">
+						<input name="url" id="url" autocomplete="on" placeholder="https://ada.is/feed" value="" type="url">
+						<input value="Submit" type="submit">
+					</span>
+				</form>	-->
+    </section>
+    <section class="sidebar">
+        <my-podcasts></my-podcasts>
+    </section>
+    <main></main>
+    <footer>
+      &copy;Copyright 2016-2018 Samsung Electronics Co., Ltd.
+    </footer>
+    
+    <!--
+      Awkward, in the case where modules are not supported the polyfill will still be loaded, ideally
+      we would dynamically import() the web components after loading this in main.js but import() is not 
+      yet widely supported and I don't want to restrict myself just yet.
+
+      Note: Fix in 2019.
+    -->
+    <script>window.ShadyDOM = {force: true}</script>
+    <script src="/module/%40webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce.js"></script>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+fave-star {
+  filter: saturate(0);
+  color: yellow;
+   -webkit-text-stroke-width: 3px;
+   -webkit-text-stroke-color: goldenrod;
+  transition: filter 100ms ease, transform 100ms ease;;
+  cursor: pointer;
+}
+
+fave-star:hover {
+  filter: saturate(0.5);
+  transform: scale(1.1);
+}
+
+fave-star[faved="true"] {
+  filter: saturate(1);
+}
