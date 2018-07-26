@@ -1,19 +1,8 @@
 {
-    "dir": "ltr",
-    "lang": "en",
-    "name": "Podle for Podcasts",
-    "scope": "/",
-    "display": "standalone",
-    "start_url": "https://podle.glitch.me/",
-    "short_name": "Podle",
-    "theme_color": "#05668D",
-    "description": "Podle for Podcasts allows you to find and listen to podcasts from your browser.",
-    "orientation": "any",
-    "background_color": "white",
-    "related_applications": [],
-    "prefer_related_applications": false,
+    "name": "",
+    "short_name": "",
     "icons": [
-      {
+        {
             "src": "/icons/android-chrome-36x36.png",
             "sizes": "36x36",
             "type": "image/png"
@@ -38,11 +27,6 @@
             "sizes": "144x144",
             "type": "image/png"
         },
-              {
-            "src": "/icons/android-chrome-144x144.png",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
         {
             "src": "/icons/android-chrome-192x192.png",
             "sizes": "192x192",
@@ -63,5 +47,8 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ]
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone"
 }

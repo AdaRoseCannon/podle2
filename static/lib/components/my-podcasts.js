@@ -84,10 +84,9 @@ class MyPodcasts extends refs(HTMLElement) {
         ${
           this.code.then(code => code ? wire()`<p>Logged in. <button onclick="${
             e => getPouchDB('mySettings')
-                .then(db => {
-                   db.get('my code')
-                   .then(o => (o._deleted = true, db.put(o)))
-                 })
+                .then(db => db.get('my code').then(o => (o._deleted = true, db.put(o))))
+                .catch(e => console.log(e))
+                .then(() => el.update())
           }">Log Out</button></p>` : loginForm(el))
         }
       </details>

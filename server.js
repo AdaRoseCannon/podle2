@@ -37,19 +37,21 @@ function isOk(response) {
 const codeCache = {};
 
 function getDBFromCode(code) {
+  const url = 'https://podle.glitch.me';
+  const body = `code=${code}&redirect_uri=${url}&client_id=${url}`;
   return codeCache[code] || (codeCache[code] = fetch("https://indieauth.com/auth", {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     },
     method: "POST",
-    body: `code=${code}&redirect_uri=https://podle.glitch.me&client_id=https://podle.glitch.me&`
+    body
   })
   .then(response => response.json())
   
   // TODO!! VERIFY THIS!
   .then(json => {
-    if (!json.me) throw Error('Invalid User! ' + JSON.stringify(json));
+    if (!json.me) throw Error('Invalid User! ' + JSON.stringify(json) + '\nbody: ' + body);
     const name = json.me.replace(/[^a-z0-9.+&]/ig, '_');
     try {
       const db = new TempPouchDB(name);
@@ -118,9 +120,9 @@ app.use('/search', (req,res) => {
 
 app.use('/lib/hypermorphic/*', (req,res) => res.sendFile(path.join(process.cwd(), 'node_modules', 'hyperhtml/esm/', req.params[0])));
 
-app.use('/module/:package/*', function (req, res) {
-  res.sendFile( path.join(process.cwd(), 'node_modules',req.params.package, req.params[0]));
-});
+app.use('/module/', express.static('node_modules'));
+
+app.use('/icons/', express.static('.icons'));
 
 app.get('/audioproxy/', audioProxy);
 

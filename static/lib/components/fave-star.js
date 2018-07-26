@@ -1,6 +1,8 @@
 import html from '/module/html-element-plus/noop.js';
 import getPouchDB from '../get-pouch-db.js';
 
+document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="/lib/components/fave-star.css">`);
+
 class FaveStar extends HTMLElement {
 	constructor () {
 		super();
@@ -18,7 +20,6 @@ class FaveStar extends HTMLElement {
     
     // ⭐, 🌟
 		return html`
-    <link rel="stylesheet" href="/lib/components/fave-star.css">
     <span id="star">&#9733;</span>`;
 	}
 

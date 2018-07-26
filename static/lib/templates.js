@@ -29,7 +29,7 @@ function isOk(response) {
 		return Promise.resolve(response)
 			.then(getBody)
 			.then(function (range) {
-				throw Error('Bad response: ' + response.statusText + ' (' + response.status + ')');
+				throw Error('Bad response from "' + response.url + '" ' + response.statusText + ' (' + response.status + ')');
 			});
 	}
 	return response;
@@ -47,6 +47,8 @@ const searchItemTemplate = (termObject, i) => html`
 */
 const loadingTemplate = () => html`<h3>loading...</h3>`;
 
+const errorTemplate = e => html`<h2>Error</h2><p>${e.message}</p>`;
+
 /*
   List of search results
 */
@@ -57,7 +59,8 @@ const searchTemplate = term => ({
     .then(o => html`
       <h2>Search results for "${term}"</h2>
       <ul>${ o.body.map(searchItemTemplate) }</ul>
-    `),
+    `)
+    .catch(e => errorTemplate(e)),
   placeholder: loadingTemplate()
 });
 
@@ -75,20 +78,20 @@ const metaTemplate = (url, meta) => wire(getRefObj(url), ':meta')`
 /*
   Feed Item Template
 */
-const feedItemTemplate = (o, i) => wire(getRefObj('feed-item'), `:feed-item-${i}`)`
-	<details class="feed-item">
+const feedItemTemplate = (o, i) => wire(getRefObj('feed-item'), `:feed-item-${(o['media:content'] ? o['media:content'].url : i)}`)`
+	<details class="feed-item" open=${i === 0 ? 'true' : 'false'}>
 		<summary>
       <h2>${o.title}</h2><br />
 		  <time>Updated - ${o.humanDate}</time>
     </summary>
 		${o['media:content'] ? wire(getRefObj('feed-item'), `:feed-item-${i}-media-player`)`
       <podle-player>
-				<audio slot="audio" src="${'/audioproxy?url=' + encodeURIComponent(o['media:content'].url)}" controls preload="none">
+				<audio slot="audio" src="${'/audioproxy?url=' + encodeURIComponent(o['media:content'].url)}" crossorigin="anonymous" controls preload="none">
 					<span><a href="${o['media:content'].url}" target="_blank" rel="noopener" rel="nofollow">${o.title}</a>
 					  (<span class="filesize">${(Number(o['media:content'].filesize)/1E6).toFixed(1) + 'MB'}></span> ${o['media:content'].type})</span>
 				</audio><br />
 				<span>In case the player does not work <br />
-          try the <a href="${o['media:content'].url}" download target="_blank" rel="noopener" rel="nofollow" title="${'Direct Download: ' + o.title}">original podcast file</a>.<br />
+          try the <a slot="real-url" href="${o['media:content'].url}" download target="_blank" rel="noopener" rel="nofollow" title="${'Direct Download: ' + o.title}">original podcast file</a>.<br />
           (<span class="filesize">${(Number(o['media:content'].filesize)/1E6).toFixed(1) + 'MB'}</span> ${o['media:content'].type})
         </span>
       </podle-player>
@@ -115,6 +118,7 @@ const feedTemplate = url => {
         ${metaTemplate(url, feed.meta)}
         ${feed.items.map(i => (i.copyright = i.copyright || feed.meta.copyright, i)).map(feedItemTemplate)}
       `)
+      .catch(e => errorTemplate(e))
     ,
     placeholder: wire(dummyFeedItem)`
     <div class="dummy" aria-hidden="true">

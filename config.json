@@ -3,22 +3,12 @@
     "uuid": "5e9237dc-bd5c-4375-87e7-15e01bbfabbe"
   },
   "cors": {
-    "credentials": false,
+    "credentials": true,
     "headers": "accept, authorization, content-type, origin, referer",
-    "origins": "*",
+    "origins": "https://podle.glitch.me",
     "methods": "GET, PUT, POST, HEAD, DELETE"
   },
-  "httpd": {},
-  "admins": {
-    "ada": "-pbkdf2-7501af264a838922e92bc7feb006d38c5ba53a66,1691111b018210f1311891ca1881001f414b1451721f519d,10"
-  },
-  "replicator": {
-    "db": "_replicator"
-  },
-  "log": {
-    "file": "log.txt"
-  },
-  "couch_httpd_auth": {
-    "authentication_db": "_users"
+  "httpd": {
+    "enable_cors": true
   }
 }

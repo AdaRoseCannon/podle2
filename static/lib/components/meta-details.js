@@ -3,6 +3,8 @@
 import { wire, bind } from '../hypermorphic/index.js';
 import getPouchDB from '../get-pouch-db.js';
 
+document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="/lib/components/meta-details.css">`);
+
 const refs = new Map();
 
 class MetaDetails extends HTMLElement {
@@ -17,7 +19,6 @@ class MetaDetails extends HTMLElement {
     refs.set(el.id, obj);
 
     const output = wire(obj)`
-      <link rel="stylesheet" href="/lib/components/meta-details.css">
       <span class="title-area">
         <slot name="title">Default Title</slot>
         <h2>&nbsp;${

@@ -43,6 +43,13 @@ body {
   color: var(--dark-text);
   font-display: fallback;
   min-height: 100vh;
+  
+  
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -143,10 +150,13 @@ body > footer {
 input[type="submit"], button {
   background: var(--brand-gradient);
   border-radius: 10%;
-  border: none;
+  border: 1px solid var(--light-text);
   color: var(--light-text);
   font-weight: bold;
   padding: 0.5em;
+}
+input[type="submit"]:active, button:active {
+  background: linear-gradient(to top left, var(--brand-color-light), var(--brand-color-dark));
 }
 
 .dummy {
@@ -207,4 +217,8 @@ details.feed-item > summary {
 
 :focus-ring {
   outline: 2px dotted var(--brand-color-light); 
+}
+
+footer > img {
+  vertical-align: bottom;
 }

@@ -2,6 +2,10 @@
 
 const cacheName = 'pwabuilder-offline-v1.1';
 
+const cacheOrigins = new Set([
+  'https://feed-service.ada.is'
+]);
+
 //Install stage sets up the offline page in the cache and opens a new cache
 self.addEventListener('install', function(event) {
   event.waitUntil(preLoad());
@@ -29,7 +33,10 @@ async function cacheFirstOrFetchAndCache(request) {
     return matching;
   }
   const response = await fetch(request);
-  if(response.status < 400 && (response.headers.get('content-type') || '').match(/^application\/json/)) {
+  if(response.status < 400 &&
+     (response.headers.get('content-type') || '').match(/^application\/json/) &&
+     cacheOrigins.has(new URL(request.url).origin)
+  ) {
     console.log('[PWA Builder] add page to offline '+response.url)
     cache.put(request, response.clone());
   }

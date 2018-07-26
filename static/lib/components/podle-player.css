@@ -1,0 +1,129 @@
+podle-player > div {
+  display: flex;
+  --height: 3rem;
+  background: var(--brand-color-dark);
+  border: 1px solid var(--brand-color-dark);
+  border-radius: var(--height) 0 0 var(--height);
+}
+
+podle-player > div > * {
+  min-width: var(--height);
+  flex-shrink: 0;
+}
+podle-player button.download-button {
+  font-size: calc(var(--height) / 2);
+  padding: 0;
+  flex-grow: 1;
+  font-weight: normal;
+}
+
+podle-player button.rewind30 {
+  font-size: calc(var(--height) / 4);
+  padding: 0;
+  margin: 0 0.1rem;
+  font-weight: normal;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+podle-player button.rewind30 > span {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: calc(var(--height) * 1.1);
+  line-height: calc(var(--height) * 1.1);
+  
+  top: 0;
+  height: 100%;
+  left: 0;
+  transform: translateY(-0.1rem);
+}
+
+podle-player > div> a {
+  display: flex;
+  text-decoration: none;
+}
+
+podle-player .timeline-container {
+  height: var(--height);
+  position: relative;
+  --time: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  border-left: 1px solid white;
+}
+
+podle-player .timeline {
+  background: var(--brand-color-light);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  transform-origin: 0 0;
+  transform: scale(calc(0.01 + 0.99 * var(--time)), 1);
+}
+
+podle-player .text-details {
+  display: inline-block;
+  font-family: mono, monospace;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  max-width: 100%;
+}
+
+podle-player .hidden {
+  display: none;
+}
+
+podle-player .button-wrapper {
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  --height: 2rem;
+  width: calc(var(--height) * 1.5);
+  height: calc(var(--height) * 1.5);
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  margin: 0 calc(var(--padding) * 0.5) 0 0;
+  border: 1px solid var(--light-text);
+}
+
+podle-player .play-button {
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: var(--height);
+  margin-right: -10%;
+
+  border-color: transparent transparent transparent var(--pale-background);
+  transition: 100ms border ease;
+  cursor: pointer;
+
+  border-style: solid;
+  border-width: calc(var(--height) * 0.5) 0 calc(var(--height) * 0.5) calc(var(--height) * 0.833);
+  
+  font-size: 0;
+}
+
+
+podle-player .playing .play-button {
+  border-style: double;
+  border-width: 0 0 0 calc(var(--height) * 0.8333);
+  border-radius: 0;
+  margin-left: -0.2rem;
+}
+
+podle-player .play-button:hover {
+  border-color: transparent transparent transparent white;
+}
